@@ -13,16 +13,29 @@ connect.then((db)=>{
   console.log("connected to server correctly");
 
 Dishes.create({
-    name:"Dosa46",
+    name:"IdliSambhar1",
     description:"SouthIndian Dish"
   })
 .then((dish)=>{
   console.log(dish);
 
-  return Dishes.find({}).exec();
+  return Dishes.findByIdAndUpdate(dish._id,{
+    $set:{description:'Updated Test'}
+  },{
+    new :true
+  })
+  .exec();
 })
 .then((dish)=>{
   console.log(dish);
-
-});
+  dish.comments.push({
+    rating:5,
+    comment:"good",
+    author:"gaurav"
+  });
+return dish.save()
+})
+.then((dish)=>{
+  console.log(dish);
+})
 } )
