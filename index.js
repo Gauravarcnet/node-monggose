@@ -12,21 +12,17 @@ const connect=mongoose.connect(url,{
 connect.then((db)=>{
   console.log("connected to server correctly");
 
-  var newDish=Dishes({
-    name:"Dosa366",
+Dishes.create({
+    name:"Dosa46",
     description:"SouthIndian Dish"
-  });
-
-  newDish.save()
-  .then((dish)=>{
-    console.log(dish);
-
-    return Dishes.find({}).exec();
   })
-  .then((dish)=>{
-    console.log(dish);
+.then((dish)=>{
+  console.log(dish);
 
-  });
+  return Dishes.find({}).exec();
+})
+.then((dish)=>{
+  console.log(dish);
 
-
+});
 } )
